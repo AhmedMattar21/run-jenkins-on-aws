@@ -1,0 +1,7 @@
+# Jenkins - Challenge - 1
+## ToDo
+- **Install and Configure AWSCLI.**  ![](../images/done2.png)
+- **Create CloudFormation Template to Create EC2 Instance and EIP.**
+- **Use Ansible to Configure the server by installing Jenkins and NGINX.**  
+
+
