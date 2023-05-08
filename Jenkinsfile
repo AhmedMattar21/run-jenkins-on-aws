@@ -39,6 +39,7 @@ pipeline {
                     
                 }
             }
+        }
         stage('Configure Infrastructure') {
             steps {
                 withEnv(["HOME=${env.WORKSPACE}"]) {
