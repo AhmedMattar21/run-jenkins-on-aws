@@ -32,7 +32,7 @@ pipeline {
             post {    
                 unsuccessful {
 
-                    slackSend color: 'danger', message: '''echo "ERROR: Faild Deploying Infrastructure ... \
+                    slackSend color: 'danger', message: '''ERROR: Faild Deploying Infrastructure ... \
                             \nWORKSAPCE: run-jenkins-on-aws
                             \nBUILD_NUMBER: ${BUILD_NUMBER}
                         '''
