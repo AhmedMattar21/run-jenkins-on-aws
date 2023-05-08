@@ -21,9 +21,9 @@ pipeline {
                  )]){
                     
                     withEnv(["HOME=${env.WORKSPACE}"]) {
-                    sh './create-stack.sh Jenkins-${BUILD_NUMBER} scripts/infrastructure.yml scripts/infra-parameters.json'
+                    sh './scripts/create-stack.sh Jenkins-${BUILD_NUMBER} IaC/controller.yml IaC/parameters.json'
                     sh 'sleep 60'
-                    sh './getEc2Ip.sh >> ansible/inventory.txt'
+                    sh './scripts/getEc2Ip.sh >> ansible/inventory.txt'
                     sh 'cat ansible/inventory.txt'
                 }
 
