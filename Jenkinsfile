@@ -44,7 +44,7 @@ pipeline {
             steps {
                 withEnv(["HOME=${env.WORKSPACE}"]) {
                     sh 'export ANSIBLE_HOST_KEY_CHECKING=False'
-                    sh 'ansible-playbook ansible/playbook.yml -i ansible/inventory.txt --user ubuntu --private-key=$ANSIBLE_PRIVATE_KEY '
+                    sh 'ansible-playbook ansible/playbookX.yml -i ansible/inventory.txt --user ubuntu --private-key=$ANSIBLE_PRIVATE_KEY '
                     sh 'ls'
                 }
                 
@@ -78,7 +78,7 @@ pipeline {
             
             slackSend color: 'good', message: '''echo "SUCCESS: Our Jenkins Server is Up and Running ... \
                             \nWORKSAPCE: run-jenkins-on-aws
-                            \nBUILD_NUMBER: ${BUILD_NUMBER}
+                            \nBUILD_NUMBER: "${BUILD_NUMBER}"
                         '''
             
         }
