@@ -1,0 +1,28 @@
+---
+# Jinkens Installation on ubuntu
+
+- name: "Install Dependancies: Java JDK"
+  apt:
+    update_cache: yes
+    name: openjdk-11-jdk
+    state: latest
+
+- name: "Add Jenkins Repo and its Key"
+  shell: |
+    curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee \
+      /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+    echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+      https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+      /etc/apt/sources.list.d/jenkins.list > /dev/null
+
+- name: "Install Jenkins"
+  apt:
+    update_cache: yes
+    name: jenkins
+    state: latest
+
+- name: "Add Jenkins Permisson to Docker"
+  shell: |
+    sudo groupadd -f docker
+    sudo usermod -aG docker jenkins
+    newgrp docker

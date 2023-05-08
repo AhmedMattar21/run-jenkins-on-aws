@@ -1,0 +1,10 @@
+---
+- name: "Contoller Configuration"
+  hosts: targets
+  become: true
+  become_user: root
+
+  
+  roles:
+    - docker
+    - jenkins

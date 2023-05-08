@@ -25,8 +25,8 @@ Resources:
           ToPort: 80
           CidrIp: 0.0.0.0/0
         - IpProtocol: tcp
-          FromPort: 8080
-          ToPort: 8080
+          FromPort: 8000
+          ToPort: 8000
           CidrIp: 0.0.0.0/0
         - IpProtocol: tcp
           FromPort: 22
@@ -48,7 +48,7 @@ Resources:
       KeyName: aws
       Tags:
       - Key: Name
-        Value: "Server101"
+        Value: "Controller"
       NetworkInterfaces: 
         - AssociatePublicIpAddress: "true"
           DeviceIndex: "0"
@@ -56,4 +56,11 @@ Resources:
             - Ref: "myWebAccessSecurityGroup"
           SubnetId: 
             Ref: "PublicSubnet"
+
+
+  EC2EIP4S78X:
+    Type: 'AWS::EC2::EIP'
+    Properties:
+      InstanceId: !Ref myWebServerInstance
+
   
