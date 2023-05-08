@@ -1,0 +1,10 @@
+---
+# Get Jenkins Initial Password
+
+- name: "Get Jenkins Password"
+  shell: cat /var/lib/jenkins/secrets/initialAdminPassword > ~/password.txt
+
+- name: "Copy the file to my workspace"
+  copy:
+    src: /var/lib/jenkins/secrets/initialAdminPassword
+    dest: ~/
