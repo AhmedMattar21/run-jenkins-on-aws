@@ -21,8 +21,7 @@
     name: jenkins
     state: latest
 
-- name: "Add Jenkins Permisson to Docker"
+- nam e: "Add Jenkins Permisson to Docker"
   shell: |
     groupadd -f docker
     usermod -aG docker jenkins
-    newgrp docker
