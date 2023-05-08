@@ -44,6 +44,7 @@ pipeline {
                 withEnv(["HOME=${env.WORKSPACE}"]) {
                     sh 'export ANSIBLE_HOST_KEY_CHECKING=False'
                     sh 'ansible-playbook ansible/playbook.yml -i ansible/inventory.txt --user ubuntu --private-key=$ANSIBLE_PRIVATE_KEY '
+                    sh 'ls'
                 }
                 
             }  
