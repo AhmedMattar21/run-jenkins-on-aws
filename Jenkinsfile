@@ -34,7 +34,7 @@ pipeline {
 
                     slackSend color: 'danger', message: '''ERROR: Faild Deploying Infrastructure ... \
                             \nWORKSAPCE: run-jenkins-on-aws
-                            \nBUILD_NUMBER: ${BUILD_NUMBER}
+                            \nBUILD_NUMBER: "${BUILD_NUMBER}"
                         '''
                     
                 }
@@ -44,7 +44,7 @@ pipeline {
             steps {
                 withEnv(["HOME=${env.WORKSPACE}"]) {
                     sh 'export ANSIBLE_HOST_KEY_CHECKING=False'
-                    sh 'ansible-playbook ansible/playbookX.yml -i ansible/inventory.txt --user ubuntu --private-key=$ANSIBLE_PRIVATE_KEY '
+                    sh 'ansible-playbook ansible/playbook.yml -i ansible/inventory.txt --user ubuntu --private-key=$ANSIBLE_PRIVATE_KEY '
                     sh 'ls'
                 }
                 
@@ -54,9 +54,10 @@ pipeline {
 
                     slackSend color: 'danger', message: '''echo "ERROR: Faild Configuring Infrastructure ... \
                             \nWORKSAPCE: run-jenkins-on-aws
-                            \nBUILD_NUMBER: ${BUILD_NUMBER}
+                            \nBUILD_NUMBER: "${BUILD_NUMBER}"
                         '''
-
+                    
+                    echo 'Removing the Stack ...'
                     withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID',
                         credentialsId: 'jenkins-awscli', 
                         screteKeyVariable: 'AWS_SECRET_ACCESS_KEY'
